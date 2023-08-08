@@ -61,8 +61,6 @@ describe('TestController (e2e)', () => {
       .expect(({ body: data }) => {
         expect(data.message).toBe(`Book record retrieve successfully`);
         expect(data.data.name).toBe(bookRecord.name);
-        // expect(data.data).toContain(bookRecord);
-         
       });
   });
   it('/test (Get)   should get a single book record with wrong id', () => {

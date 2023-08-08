@@ -31,10 +31,10 @@ export class BookService {
           400,
         );
       }
-      throw new HttpException(
-        'Error  occur while creating Book',
-        HttpStatus.BAD_REQUEST,
-      );
+      // throw new HttpException(
+      //   'Error  occur while creating Book',
+      //   HttpStatus.BAD_REQUEST,
+      // );
     }
   }
   async deleteBook(bookId: number): Promise<void> {

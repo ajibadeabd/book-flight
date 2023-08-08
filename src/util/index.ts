@@ -4,16 +4,16 @@ import { Response, Request } from 'express';
 export class HttpResponse {
   static ok = (
     res: Response,
-    data = {},
-    message = 'Request successful',
+    data: { [x: string]: any },
+    message: string,
     status = HttpStatus.OK,
   ) => {
     return res.status(status).json({ data, message });
   };
   static created = (
     res: Response,
-    data = {},
-    message = 'Resource created',
+    data: { [x: string]: any },
+    message: string,
     status = HttpStatus.CREATED,
   ) => {
     return res.status(status).json({ data, message });
