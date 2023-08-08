@@ -12,7 +12,7 @@ import {
 import { BookService } from './book.service';
 import { Book } from './entity/book.entity';
 import { Response, Request } from 'express';
-import { HttpResponse } from 'src/util';
+import { HttpResponse } from '../util';
 import { IBook, IBookUpdate, IGetBooks } from './types';
 
 @Controller('/books')
@@ -26,12 +26,12 @@ export class BookController {
     @Param() bookParams: IGetBooks,
   ) {
     const response = await this.bookService.getBooks(bookParams);
-    return HttpResponse.ok(res, response);
+    return HttpResponse.ok(res, response, 'Record fetch successfully');
   }
   @Get(':id')
   async getEachBook(@Res() res: Response, @Param('id') bookId: number) {
     const response = await this.bookService.getBook(bookId);
-    return HttpResponse.ok(res, response);
+    return HttpResponse.ok(res, response, 'Book record retrieve successfully');
   }
 
   @Post()
