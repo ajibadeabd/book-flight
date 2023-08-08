@@ -19,4 +19,42 @@ export class BookService {
     }
     return book;
   }
+
+  async createBook(data: IBook): Promise<Book> {
+    try {
+      const book = await this.bookDataFactory.create(data);
+      return book;
+    } catch (error: any) {
+      if (error.message.indexOf('Duplicate entry') > -1) {
+        throw new HttpException(
+          `Book with isbn "${data.isbn}" number has been created earlier`,
+          400,
+        );
+      }
+      throw new HttpException(
+        'Error  occur while creating Book',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+  async deleteBook(bookId: number): Promise<void> {
+    const book = await this.bookDataFactory.remove(bookId);
+    if (!book.affected) {
+      throw new HttpException(
+        `Record not found with book id ${bookId}`,
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    return;
+  }
+  async updateBookRecord(book: IBookUpdate, bookId: number): Promise<void> {
+    const response = await this.bookDataFactory.update(book, bookId);
+    if (!response.affected) {
+      throw new HttpException(
+        `Record not found with book id ${bookId}`,
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    return;
+  }
 }
