@@ -43,7 +43,7 @@ describe('TestController (e2e)', () => {
       });
   });
 
-  it('/test (POST)   should re create book record with the same isbn value', () => {
+  it('/test (Not POST)   should not re create book record with the same isbn value', () => {
     return request(app.getHttpServer())
       .post('/books')
       .send(bookRecord)
@@ -63,7 +63,7 @@ describe('TestController (e2e)', () => {
         expect(data.data.name).toBe(bookRecord.name);
       });
   });
-  it('/test (Get)   should get a single book record with wrong id', () => {
+  it('/test ( Not Get)   should not get a single book record with wrong id', () => {
     return request(app.getHttpServer())
       .get(`/books/${wrongId}`)
       .expect(404)
@@ -82,7 +82,7 @@ describe('TestController (e2e)', () => {
         expect(data.message).toBe(`Book Record has been updated  successfully`);
       });
   });
-  it('/test (Update)   should update  book record with wrong id', () => {
+  it('/test (Not Update)   should not update  book record with wrong id', () => {
     return request(app.getHttpServer())
       .patch(`/books/${wrongId}`)
       .send(bookRecord)
@@ -101,7 +101,7 @@ describe('TestController (e2e)', () => {
       });
   });
 
-  it('/test (DELETE)   should delete book record  with wrong id ', () => {
+  it('/test (Not DELETE)   should not delete book record  with wrong id ', () => {
     return request(app.getHttpServer())
       .delete(`/books/${wrongId}`)
       .send(bookRecord)

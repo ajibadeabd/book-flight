@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { BookService as BookDataFactory } from './database.factory';
+import { BookDataFactory } from './database.factory';
 import { Book } from './entity/book.entity';
 import { IBook, IBookUpdate, IGetBooks } from './types';
 @Injectable()
@@ -31,10 +31,6 @@ export class BookService {
           400,
         );
       }
-      // throw new HttpException(
-      //   'Error  occur while creating Book',
-      //   HttpStatus.BAD_REQUEST,
-      // );
     }
   }
   async deleteBook(bookId: number): Promise<void> {

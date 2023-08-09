@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { Book } from '../entity/book.entity';
-import { IBook, IBookUpdate, IGetBooks } from '../types';
+import { IBook, IBookDaFactory, IBookUpdate, IGetBooks } from '../types';
 
 @Injectable()
-export class BookService {
+export class BookDataFactory implements IBookDaFactory {
   constructor(
     @InjectRepository(Book)
     private usersRepository: Repository<Book>,

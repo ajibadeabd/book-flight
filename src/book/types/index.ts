@@ -4,6 +4,8 @@ import {
   IsOptional,
   IsNumberString,
 } from 'class-validator';
+import { DeleteResult, UpdateResult } from 'typeorm';
+import { Book } from '../entity/book.entity';
 
 export class IBook {
   @IsString()
@@ -49,4 +51,13 @@ export class IGetBooks {
 
   //   @IsOptional()
   page: string;
+}
+
+// Interface for the BookDataFactory
+export interface IBookDaFactory {
+  findAll(bookParams: IGetBooks): Promise<Book[]>;
+  findOne(id: number): Promise<Book | null>;
+  create(data: IBook): Promise<Book>;
+  remove(bookId: number): Promise<DeleteResult>;
+  update(book: IBookUpdate, bookId: number): Promise<UpdateResult>;
 }
