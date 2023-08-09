@@ -3,6 +3,7 @@ import {
   IsNotEmpty,
   IsOptional,
   IsNumberString,
+  IsNumber,
 } from 'class-validator';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { Book } from '../entity/book.entity';
@@ -51,6 +52,12 @@ export class IGetBooks {
 
   //   @IsOptional()
   page: string;
+}
+
+export class IBookParam {
+  @IsNumberString()
+  @IsNotEmpty()
+  id: string;
 }
 
 // Interface for the BookDataFactory

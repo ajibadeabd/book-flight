@@ -6,14 +6,12 @@ import {
   Param,
   Patch,
   Post,
-  Req,
   Res,
 } from '@nestjs/common';
 import { BookService } from './book.service';
-import { Book } from './entity/book.entity';
-import { Response, Request } from 'express';
+import { Response } from 'express';
 import { HttpResponse } from '../util';
-import { IBook, IBookUpdate, IGetBooks } from './types';
+import { IBook, IBookParam, IBookUpdate, IGetBooks } from './types';
 
 @Controller('/books')
 export class BookController {
@@ -24,18 +22,25 @@ export class BookController {
     @Res() res: Response,
 
     @Param() bookParams: IGetBooks,
-  ) {
+  ): Promise<Response<any, Record<string, any>>> {
     const response = await this.bookService.getBooks(bookParams);
     return HttpResponse.ok(res, response, 'Record fetch successfully');
   }
   @Get(':id')
-  async getEachBook(@Res() res: Response, @Param('id') bookId: number) {
-    const response = await this.bookService.getBook(bookId);
+  async getEachBook(
+    @Res() res: Response,
+    @Param() data: IBookParam,
+  ): Promise<Response<any, Record<string, any>>> {
+    console.log(data);
+    const response = await this.bookService.getBook(+data.id);
     return HttpResponse.ok(res, response, 'Book record retrieve successfully');
   }
 
   @Post()
-  async createBookRecord(@Res() res: Response, @Body() data: IBook) {
+  async createBookRecord(
+    @Res() res: Response,
+    @Body() data: IBook,
+  ): Promise<Response<any, Record<string, any>>> {
     const response = await this.bookService.createBook(data);
     return HttpResponse.created(
       res,
@@ -45,17 +50,20 @@ export class BookController {
   }
 
   @Delete(':id')
-  async deleteBookRecord(@Res() res: Response, @Param('id') bookId: number) {
-    await this.bookService.deleteBook(bookId);
+  async deleteBookRecord(
+    @Res() res: Response,
+    @Param() data: IBookParam,
+  ): Promise<Response<any, Record<string, any>>> {
+    await this.bookService.deleteBook(+data.id);
     return HttpResponse.ok(res, null, 'Book deleted successfully');
   }
   @Patch(':id')
   async updateBookRecord(
     @Res() res: Response,
     @Body() data: IBookUpdate,
-    @Param('id') bookId: number,
-  ) {
-    await this.bookService.updateBookRecord(data, bookId);
+    @Param() param: IBookParam,
+  ): Promise<Response<any, Record<string, any>>> {
+    await this.bookService.updateBookRecord(data, +param.id);
     return HttpResponse.ok(
       res,
       null,
