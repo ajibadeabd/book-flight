@@ -55,3 +55,98 @@ Retrieve a list of books.
     "data": [...], // List of book records
     "message": "Record fetch successfully"
   }
+
+
+### GET /books/:id
+
+Retrieve a   books record.
+
+- Parameters:
+  - `id` (number): book id to retrieve.
+
+- Example Request: `/books/333`
+
+- Example Response:
+  ```json
+  
+    "data": {
+      "id": 1,
+        "author: "kord",
+        "isbn": "fefersssssssssdsfre",
+        "description": "update description",
+        "name": "book name",
+        "created_at": "2023-08-08T21:42:05.786Z",
+        "updated_at": "2023-08-08T22:11:13.000Z"
+    }, 
+    "message": "Book record retrieve successfully"
+  }
+  
+  ```
+
+### DELETE /books/:id
+
+delete a list of books.
+
+- Parameters:
+  - `id` (number): book id to delete.
+
+- Example Request: `/books/333`
+
+- Example Response:
+  ```json
+  
+    "data": null, 
+    "message": "Book deleted successfully"
+  }
+  
+  ```
+
+
+### UPDATE /books/:id
+
+update a list of books.
+
+- Parameters:
+  - `id` (number): book id to delete.
+
+- Example Request: `/books/333`
+
+- Example Response:
+  ```json
+  
+    "data": null, 
+    "Book Record has been updated  successfully"
+  }
+  
+  ```
+
+
+
+### POST /books
+
+create book record.
+
+- Parameters:
+  - `isbn` (String): unique reference for t.
+  - `author` (String): author of the new book .
+  - `description` (String): description of the new book to be added.
+  - `name` (String): name of the new book to be added.
+
+- Example Request: `/books`
+
+- Example Response:
+  ```[json]
+  {
+    "data": {
+      "id": 1,
+        "author: "kord",
+        "isbn": "fefersssssssssdsfre",
+        "description": "update description",
+        "name": "book name",
+        "created_at": "2023-08-08T21:42:05.786Z",
+        "updated_at": "2023-08-08T22:11:13.000Z"
+    }, 
+    "message": "Book record retrieve successfully"
+  }
+  ```
+
