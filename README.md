@@ -68,6 +68,7 @@ Retrieve a   books record.
 
 - Example Response:
   ```json
+  {
   
     "data": {
       "id": 1,
@@ -94,7 +95,7 @@ delete a list of books.
 
 - Example Response:
   ```json
-  
+  {
     "data": null, 
     "message": "Book deleted successfully"
   }
@@ -113,7 +114,7 @@ update a list of books.
 
 - Example Response:
   ```json
-  
+  {
     "data": null, 
     "Book Record has been updated  successfully"
   }
