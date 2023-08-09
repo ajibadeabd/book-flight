@@ -9,6 +9,15 @@
 $ npm install
 ```
 
+
+## Configuration
+
+```bash
+$ create and env file and add the necessary config
+```
+
+
+
 ## Running the app
 
 ```bash
